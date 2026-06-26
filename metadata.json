@@ -1,0 +1,6 @@
+{
+  "name": "Wall Painting and Murals Portfolio",
+  "description": "Premium professional wall painting and mural services portfolio featuring custom artwork, Kalamkari paintings, office murals, and Vastu paintings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
