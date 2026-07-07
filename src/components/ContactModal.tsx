@@ -33,19 +33,28 @@ export default function ContactModal({ isOpen, onClose, preSelectedArt }: Contac
     if (isNaN(w) || isNaN(h) || w <= 0 || h <= 0) return null;
 
     const area = w * h;
-    let rate = 550; // default medium
-    if (complexity === 'basic') rate = 200;
-    if (complexity === 'premium') rate = 1000;
+    let minRate = 300;
+    let maxRate = 590;
+    let rateLabel = "300 - 590";
+    
+    if (complexity === 'basic') {
+      minRate = 100;
+      maxRate = 290;
+      rateLabel = "100 - 290";
+    } else if (complexity === 'premium') {
+      minRate = 600;
+      maxRate = 1000;
+      rateLabel = "600 - 1000";
+    }
 
-    const basePrice = area * rate;
-    const minEstimate = Math.round(basePrice * 0.9);
-    const maxEstimate = Math.round(basePrice * 1.1);
+    const minEstimate = Math.round(area * minRate);
+    const maxEstimate = Math.round(area * maxRate);
 
     return {
       area: area.toFixed(1),
       min: minEstimate.toLocaleString('en-IN'),
       max: maxEstimate.toLocaleString('en-IN'),
-      rate
+      rate: rateLabel
     };
   };
 
@@ -162,7 +171,7 @@ export default function ContactModal({ isOpen, onClose, preSelectedArt }: Contac
                     <Info className="h-4 w-4 shrink-0 text-blue-200 mt-0.5" />
                     <div>
                       <p className="text-xs text-blue-200">Pricing Guideline</p>
-                      <p className="font-medium text-blue-100">₹200 – ₹1,000 per sq. ft. depending on artwork detail level.</p>
+                      <p className="font-medium text-blue-100">₹100 – ₹1,000 per sq. ft. depending on artwork detail level.</p>
                     </div>
                   </div>
                 </div>

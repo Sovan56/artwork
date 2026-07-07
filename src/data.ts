@@ -79,13 +79,6 @@ export const FOUNDERS: Founder[] = [
     bio: 'ART Mentor and Creative Concept Artist | Illustrator | 7+ Years of Experience in Digital & Manual Artwork | Specializing in Mascots, Character Design, & Background Layouts, Graphics Design.',
     details: 'As a co-founder, Subhankar leads the digital design conceptualization process. He works closely with residential and commercial clients to prepare initial digital overlays of what the murals will look like on their walls, ensuring 100% satisfaction before a single drop of paint is applied.',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80'
-  },
-  {
-    name: 'Rahul Mukherjee',
-    role: 'Artist and Art Educator',
-    bio: 'Rahul Mukherjee is a painter and sculptor whose work is inspired by everyday life, human expressions, and portraiture. He works in a variety of mediums, including oil on canvas, watercolor, oil pastel, and mixed media. His artistic practice explores the emotions, character, and experiences that shape human life.',
-    details: 'In addition to painting, Rahul has a strong passion for sculpture. He specializes in stone carving and bronze sculpture, creating works that reflect both technical skill and artistic sensitivity. Throughout his career, Rahul has participated in numerous national and international exhibitions, showcasing his work to diverse audiences. His artworks have been acquired by private collectors and art enthusiasts from different parts of the world, reflecting the growing appreciation of his creative vision and artistic achievements. If you need this for a gallery catalog, exhibition brochure, website, or social media profile, I can also make it more formal, concise, or contemporary.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&h=400&q=80'
   }
 ];
 

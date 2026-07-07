@@ -14,7 +14,7 @@ export default function About() {
               Our Creative Brains
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Founders & Artists
+              Artists
             </h2>
             <p className="mt-2 text-neutral-400 max-w-xl text-sm sm:text-base">
               Meet our master artists behind the custom concept sketches and hand-painted wall masterpieces.

@@ -15,23 +15,28 @@ export default function Pricing({ onOpenConsultation }: PricingProps) {
   const h = parseFloat(height);
   const area = isNaN(w) || isNaN(h) || w <= 0 || h <= 0 ? 0 : w * h;
 
-  let rate = 550; // medium
-  let label = "Medium Detail Mural";
+  let minRate = 300;
+  let maxRate = 590;
+  let rateLabel = "300 - 590";
+  let label = "Medium Detail Mural (Mid)";
   let techDesc = "Medium complexity scenery, corporate branding layouts, detailed vector fields, or customized café typography designs.";
   
   if (complexity === 'basic') {
-    rate = 200;
+    minRate = 100;
+    maxRate = 290;
+    rateLabel = "100 - 290";
     label = "Basic Silhouette / Geometric Art";
     techDesc = "Simple shapes, single-color layouts, block geometric patterns, basic kids cartoons, or minimal line art.";
   } else if (complexity === 'premium') {
-    rate = 1000;
-    label = "High-Fidelity Premium / Kalamkari Art";
+    minRate = 600;
+    maxRate = 1000;
+    rateLabel = "600 - 1000";
+    label = "High-Fidelity Premium / Kalamkari Art (Full)";
     techDesc = "Intricate Kalamkari motifs, complex spiritual Vastu horse portraits, hyper-detailed multi-layered realism, or highly textured brush paintings.";
   }
 
-  const basePrice = area * rate;
-  const minPrice = Math.round(basePrice * 0.9);
-  const maxPrice = Math.round(basePrice * 1.1);
+  const minPrice = Math.round(area * minRate);
+  const maxPrice = Math.round(area * maxRate);
 
   const formatPrice = (p: number) => {
     return p.toLocaleString('en-IN');
@@ -149,7 +154,7 @@ export default function Pricing({ onOpenConsultation }: PricingProps) {
                     </div>
                     <p className="text-xs text-neutral-400 leading-normal">{techDesc}</p>
                     <span className="text-xs text-neutral-500 block mt-2 font-mono">
-                      Calculated Rate: ₹{rate} per sq. ft.
+                      Calculated Rate: ₹{rateLabel} per sq. ft.
                     </span>
                   </div>
 
@@ -193,7 +198,7 @@ export default function Pricing({ onOpenConsultation }: PricingProps) {
                 Estimated pricing
               </span>
               <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900">
-                ₹200 – ₹1000 per sq. ft.
+                ₹100 – ₹1000 per sq. ft.
               </h3>
               <p className="text-xs sm:text-sm text-neutral-500 mt-2 leading-relaxed">
                 Wall painting costs rely on structural complexity, total surface preparation needs, height logistics, and completion timelines. Every mural matches custom client specifications.

@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { Sparkles, ArrowRight, Paintbrush, Heart, Zap, Shield, CheckCircle } from 'lucide-react';
 import { WHY_CHOOSE_US } from '../data';
 // @ts-expect-error - PNG import from assets folder
-import heroBg from '../../assets/.aistudio/images/herobackground.png';
+import heroBg from '../../assets/images/herobackground.png';
 
 interface HeroProps {
   onOpenConsultation: () => void;
