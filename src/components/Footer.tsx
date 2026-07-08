@@ -125,11 +125,13 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
         </div>
 
         {/* Bottom Bar: Brand details */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 border-t border-neutral-900/60 mt-4">
           <p>© {new Date().getFullYear()} Subhankar wallArt. All Rights Reserved.</p>
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Serving West Bengal, India & Commercial Projects Nationwide</span>
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Serving West Bengal, India & Commercial Projects Nationwide</span>
+            </div>
           </div>
         </div>
       </div>

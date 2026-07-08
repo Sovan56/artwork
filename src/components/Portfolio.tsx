@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles, ArrowRight, Eye, Calendar, BookOpen, Layers, Check } from 'lucide-react';
-import { PORTFOLIO_ITEMS, CATEGORIES } from '../data';
-import { Category, PortfolioItem } from '../types';
+import { PortfolioItem } from '../types';
 
 interface PortfolioProps {
   onOpenConsultation: (artType: string) => void;
+  portfolioItems: PortfolioItem[];
+  categories: { id: string; name: string }[];
 }
 
-export default function Portfolio({ onOpenConsultation }: PortfolioProps) {
-  const [activeCategory, setActiveCategory] = useState<Category>('all');
+export default function Portfolio({ onOpenConsultation, portfolioItems, categories }: PortfolioProps) {
+  const [activeCategory, setActiveCategory] = useState<string>('all');
   
   // Track which cards are currently showing "Room Mockup" view vs "Artwork Only" view
   const [roomMockupView, setRoomMockupView] = useState<Record<string, boolean>>({});
@@ -21,7 +22,7 @@ export default function Portfolio({ onOpenConsultation }: PortfolioProps) {
     }));
   };
 
-  const filteredItems = PORTFOLIO_ITEMS.filter((item) => {
+  const filteredItems = portfolioItems.filter((item) => {
     if (activeCategory === 'all') return true;
     return item.category === activeCategory;
   });
@@ -110,7 +111,17 @@ export default function Portfolio({ onOpenConsultation }: PortfolioProps) {
 
         {/* Gallery Interactive Category Filter Tabs */}
         <div className="flex overflow-x-auto gap-1.5 pb-4 mb-8 scrollbar-none border-b border-neutral-100">
-          {CATEGORIES.map((cat) => (
+          <button
+            onClick={() => setActiveCategory('all')}
+            className={`px-4.5 py-2.5 rounded-full text-xs font-bold shrink-0 transition-all ${
+              activeCategory === 'all'
+                ? 'bg-blue-600 text-white shadow-md shadow-blue-600/10'
+                : 'bg-neutral-100 hover:bg-neutral-200/70 text-neutral-600 hover:text-neutral-900'
+            }`}
+          >
+            All Artworks
+          </button>
+          {categories.filter(cat => cat.id !== 'all').map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}

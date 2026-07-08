@@ -12,7 +12,7 @@ export interface PortfolioItem {
   category: Category;
   description: string;
   image: string;
-  roomMockupImage: string;
+  roomMockupImage?: string;
   schedule?: string;
   priceRange?: string;
 }
