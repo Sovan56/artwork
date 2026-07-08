@@ -13,11 +13,20 @@ import About from './components/About';
 import Pricing from './components/Pricing';
 import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
+import AdminPanel from './components/AdminPanel';
+import { PORTFOLIO_ITEMS, CATEGORIES } from './data';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [selectedArtType, setSelectedArtType] = useState<string | undefined>(undefined);
+  
+  // Dynamic admin-driven states
+  const [portfolioItems, setPortfolioItems] = useState(PORTFOLIO_ITEMS);
+  const [categories, setCategories] = useState(() => 
+    CATEGORIES.map(c => ({ id: c.id as string, name: c.name }))
+  );
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   // Open consultation modal, optionally with a pre-selected art category
   const openConsultation = (artType?: string) => {
@@ -53,6 +62,16 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Check URL search parameters to activate admin mode silently
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('admin') === 'true') {
+      setIsAdminOpen(true);
+      // Clean up URL query parameters silently to keep the address bar pristine
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
   const handleExploreVisualizer = () => {
     const element = document.getElementById('interactive-visualizer');
     if (element) {
@@ -68,6 +87,18 @@ export default function App() {
       });
     }
   };
+
+  if (isAdminOpen) {
+    return (
+      <AdminPanel
+        portfolioItems={portfolioItems}
+        setPortfolioItems={setPortfolioItems}
+        categories={categories}
+        setCategories={setCategories}
+        onClose={() => setIsAdminOpen(false)}
+      />
+    );
+  }
 
   return (
     <div className="bg-neutral-950 min-h-screen text-neutral-100 flex flex-col font-sans antialiased selection:bg-blue-600 selection:text-white">
@@ -90,7 +121,11 @@ export default function App() {
 
         {/* Gallery Grid Catalog */}
         <div id="portfolio">
-          <Portfolio onOpenConsultation={(artType) => openConsultation(artType)} />
+          <Portfolio 
+            onOpenConsultation={(artType) => openConsultation(artType)} 
+            portfolioItems={portfolioItems}
+            categories={categories}
+          />
         </div>
 
         {/* Interactive Wall Visualizer preview */}
@@ -113,7 +148,9 @@ export default function App() {
       </main>
 
       {/* Footer Contact Details card */}
-      <Footer onOpenConsultation={() => openConsultation()} />
+      <Footer 
+        onOpenConsultation={() => openConsultation()} 
+      />
 
       {/* Free Consultation Form Request Modal */}
       <ContactModal
